@@ -4,9 +4,21 @@
     <div class="header">
       <button type="button" class="btn btn-default back-btn" (click)="onCancel()" routerLink="/comunidade"> <i
           class="bi bi-arrow-bar-left"></i> Voltar</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary btn-sm dropdown-toggle filter" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <i class="bi bi-filter"></i> Filtros
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item">Mais recentes</a></li>
+          <li><a class="dropdown-item">Mais antigos</a></li>
+          <li><a class="dropdown-item">Mais respondidos</a></li>
+          <li><a class="dropdown-item">Mais curtidos</a></li>
+        </ul>
+      </div>
     </div>
 
-    <div class="questionHolder">
+    <div class="question-holder">
       <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card question-card">
         <div class="card-body question-header">
           <h3>
@@ -20,6 +32,10 @@
         </div>
         <div class="card-body question-text">
           <p>{{ comentario.texto }}</p>
+        </div>
+        <div class="card-body question-actions">
+          <button type="button" class="btn btn-default back-btn"> <i class="bi bi-chat"></i></button>
+          <button type="button" class="btn btn-default back-btn"> <i class="bi bi-hand-thumbs-up"></i></button>
         </div>
       </div>
     </div>
