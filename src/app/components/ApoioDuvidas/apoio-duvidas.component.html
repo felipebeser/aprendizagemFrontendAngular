@@ -22,8 +22,9 @@
             <i class="bi bi-filter"></i> Filtros
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item">Mais recentes</a></li>
-            <li><a class="dropdown-item">Mais antigos</a></li>
+            
+            <li><a (click)="ordernarPorData('decrescente')" class="dropdown-item">Mais recentes</a></li>
+            <li><a (click)="ordernarPorData('crescente')" class="dropdown-item">Mais antigos</a></li>
             <li><a class="dropdown-item">Mais respondidos</a></li>
             <li><a class="dropdown-item">Mais curtidos</a></li>
             <li>
