@@ -93,6 +93,15 @@ export class ApoioDuvidasComponent implements OnInit {
     }
   }
 
+  ordernarPorData(order: string) {
+    if (order == 'decrescente') {
+      this.chapterAssuntos.sort((a,b) => new Date(b.dataCadastro).getDate() - new Date(a.dataCadastro).getDate())
+    } else if (order == 'crescente') {
+      this.chapterAssuntos.sort((a,b) => new Date(a.dataCadastro).getDate() - new Date(b.dataCadastro).getDate())
+    }
+    
+  }
+
   updatePage() {
     this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
     this.endIndex = Math.min(
