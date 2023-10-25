@@ -92,14 +92,20 @@ export class ApoioDuvidasComponent implements OnInit {
       this.updatePage();
     }
   }
-
   ordernarPorData(order: string) {
     if (order == 'decrescente') {
-      this.chapterAssuntos.sort((a,b) => new Date(b.dataCadastro).getDate() - new Date(a.dataCadastro).getDate())
+      this.chapterAssuntos.sort(
+        (a, b) =>
+          new Date(b.dataCadastro).getDate() -
+          new Date(a.dataCadastro).getDate()
+      );
     } else if (order == 'crescente') {
-      this.chapterAssuntos.sort((a,b) => new Date(a.dataCadastro).getDate() - new Date(b.dataCadastro).getDate())
+      this.chapterAssuntos.sort(
+        (a, b) =>
+          new Date(a.dataCadastro).getDate() -
+          new Date(b.dataCadastro).getDate()
+      );
     }
-    
   }
 
   updatePage() {

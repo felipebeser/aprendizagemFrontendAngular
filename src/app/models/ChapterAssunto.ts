@@ -14,6 +14,7 @@ export class ChapterAssunto {
   usuarioIdVerificacao: string;
   usuario: Usuario;
   chapter: Chapter;
+  dataCadastro: string;
   totalComentarios: number;
   chapterTag: ChapterTag[];
 }
