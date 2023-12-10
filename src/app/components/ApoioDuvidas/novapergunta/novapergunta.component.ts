@@ -16,6 +16,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable, map, startWith } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Usuario } from 'src/app/models/Usuario';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-novapergunta',
@@ -35,15 +37,17 @@ export class NovaPerguntaComponent implements OnInit {
   allTags: ChapterTag[] = [];
   selectedTags: ChapterTag[] = [];
   chapterNome: string = '';
+  usuarioLogado: Usuario;
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
 
   constructor(
     private fb: FormBuilder,
-    private service: ChapterAssuntoService,
+    private chapterAssuntoService: ChapterAssuntoService,
     private authGuardService: AuthGuardService,
     private chapterService: ChapterService,
-    private chapterTagService: ChapterTagService
+    private chapterTagService: ChapterTagService,
+    private usuarioService: UsuariosService
   ) {
     // tags que aparecem no autocomplete
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
@@ -55,6 +59,7 @@ export class NovaPerguntaComponent implements OnInit {
       )
     );
 
+
     // todas as tags
     this.chapterTagService.ObterTodos().subscribe((tags) => {
       this.allTags = tags;
@@ -65,6 +70,10 @@ export class NovaPerguntaComponent implements OnInit {
     // todos os chapters
     this.chapterService.ObterTodosJava().subscribe((chapters: Chapter[]) => {
       this.chapters = chapters;
+    });
+
+    this.usuarioService.ObterUsuarioPorId(this.authGuardService.getIdUsuarioLogado()).subscribe((usuario) => {
+      this.usuarioLogado = usuario;
     });
 
     this.form = this.fb.group({
@@ -127,11 +136,11 @@ export class NovaPerguntaComponent implements OnInit {
       this.pergunta.status = 1;
       this.pergunta.verificacao = 0;
       this.pergunta.tags = this.selectedTags;
-      this.pergunta.chapterId = this.form.value.chapter;
-      this.pergunta.usuario.id = this.authGuardService.getIdUsuarioLogado();
+      this.pergunta.chapter = this.chapters.find( chapter => chapter.id === this.form.value.chapter)!;
+      this.pergunta.usuario = this.usuarioLogado;
       console.log(this.pergunta);
       // envia a pergunta
-      this.service.NovoChapterAssuntoJava(this.pergunta).subscribe(() => {
+      this.chapterAssuntoService.NovoChapterAssuntoJava(this.pergunta).subscribe(() => {
         console.log('Pergunta enviada');
       });
     }

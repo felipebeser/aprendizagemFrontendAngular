@@ -28,9 +28,8 @@ export class DetalhesNoticiaComponent {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.noticiaId = params['id'];
-      this.chapterAssuntoService.ObterChapterAssuntoByIdJava(this.noticiaId).subscribe((data) => {
+      this.chapterAssuntoService.ObterNoticiasByIdJava(this.noticiaId).subscribe((data) => {
         this.noticia = data;
-        console.log(data);
         this.processarDescricao();
       });
     });
@@ -39,7 +38,6 @@ export class DetalhesNoticiaComponent {
     });
     this.chapterAssuntoComentarioService.obterChapterAssuntoComentariosPorChapterAssuntoIdJava(this.noticiaId).subscribe((data) => {
       this.comentarios = data;
-      console.log(data);
     });
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
   }
@@ -80,7 +78,6 @@ export class DetalhesNoticiaComponent {
     this.comentario.data = date;
     this.comentario.chapterAssuntoId = this.noticia.id;
     this.comentario.usuarioId = this.idUsuarioLogado;
-    console.log(this.comentario);
     this.comentarioService.novoChapterAssuntoComentarioJava(this.comentario).subscribe({next: () =>
     location.reload()}
     );

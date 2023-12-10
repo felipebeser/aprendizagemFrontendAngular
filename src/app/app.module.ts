@@ -80,7 +80,7 @@ import { MeusRecursosComponent } from './components/Dashboard/usuario-dashboard/
 
 import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
 
-import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
+import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.component';
 
 import { CardMensagemComponent } from './components/Dashboard/dashboard/mensagens/card-mensagem/card-mensagem.component';
 
@@ -217,6 +217,7 @@ import { ListagemUltimasBadgesComponent } from './components/Dashboard/usuario-d
 
 import { DetalhesNoticiaComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/detalhes-noticia/detalhes-noticia.component';
 import { CardComentarioComponent } from './components/ApoioDuvidas/comentario/card-comentario/card-comentario.component';
+import { NovaNoticiaComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/nova-noticia/nova-noticia.component';
 
 
 registerLocaleData(localePT);
@@ -326,7 +327,8 @@ registerLocaleData(localeFR);
     ListagemBadgesComponent,
     DialogExclusaoBadgeComponent,
     ListagemTabelaBadgesComponent,
-    ListagemUltimasBadgesComponent
+    ListagemUltimasBadgesComponent,
+    NovaNoticiaComponent
   ],
   imports: [
     BrowserModule,
