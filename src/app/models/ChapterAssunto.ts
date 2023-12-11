@@ -12,6 +12,7 @@ export class ChapterAssunto {
     status: number;
     verificacao: number;
     chapterId: number;
+    chapter: Chapter;
     chapterNome: string;
     usuario: Usuario;
     usuarioIdVerificacao: string;

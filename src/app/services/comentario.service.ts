@@ -1,3 +1,4 @@
+import { Comentario } from './../models/Comentario';
 import { NovoCursoComponent } from './../components/Curso/novo-curso/novo-curso.component';
 import { Injectable } from '@angular/core';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
@@ -55,5 +56,23 @@ export class ComentarioService {
   {
     const apiUrl = `${this.javaUrl}`;
     return this.https.post<ChapterAssuntoComentario>(apiUrl, comentario);
+  }
+
+  editarChapterAssuntoComentario (id: number, comentario: ChapterAssuntoComentario): Observable<ChapterAssuntoComentario>
+  {
+    const apiUrl = `${this.url}/${id}`;
+    return this.https.put<ChapterAssuntoComentario>(apiUrl, comentario, httpOptions);
+  }
+
+  editarChapterAssuntoComentarioJava (id: number, resposta: string): Observable<ChapterAssuntoComentario>
+  {
+    const apiUrl = `${this.javaUrl}/editar/${id}`;
+    return this.https.put<ChapterAssuntoComentario>(apiUrl, resposta);
+  }
+
+  deletarChapterAssuntoComentario (id: number): Observable<ChapterAssuntoComentario>
+  {
+    const apiUrl = `${this.url}/${id}`;
+    return this.https.delete<ChapterAssuntoComentario>(apiUrl, httpOptions);
   }
 }

@@ -64,6 +64,7 @@ import { SalvarBadgeComponent } from './components/Dashboard/usuario-dashboard/u
 import { DetalheBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/detalhe-badge/detalhe-badge.component';
 import { ListagemBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-badges/listagem-badges.component';
 import { AtualizarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/atualizar-badge/atualizar-badge.component';
+import { NovaNoticiaComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/nova-noticia/nova-noticia.component';
 
 
 const routes: Routes = [
@@ -238,6 +239,9 @@ const routes: Routes = [
       },
       {
         path: 'noticias/detalhes/:id', component: DetalhesNoticiaComponent
+      },
+      {
+        path: 'noticias/nova-noticia', component: NovaNoticiaComponent
       },
       {
         path: 'perfil', component: UsuarioPerfilComponent

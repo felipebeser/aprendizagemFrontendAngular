@@ -78,10 +78,10 @@
         <div class="card-header">
           <h1>Top contribuidores</h1>
         </div>
-        <div *ngFor="let i of rankComentarios" class="card-body">
-          <img class="user-image" src="{{ 'data:image/png;base64,' + i.usuario[0] }}" />
-          <p>{{i.usuario[1]}}</p>
-          <p>{{i.count}}</p>
+        <div *ngFor="let i of novoRankComentarios" class="card-body">
+          <img class="user-image" src="{{ 'data:image/png;base64,' + i.foto }}" />
+          <p>{{i.nomeCompleto}}</p>
+          <!-- <p>{{i.count}}</p> -->
         </div>
       </div>
     </div>

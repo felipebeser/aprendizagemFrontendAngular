@@ -218,6 +218,7 @@ import { ListagemUltimasBadgesComponent } from './components/Dashboard/usuario-d
 
 import { DetalhesNoticiaComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/detalhes-noticia/detalhes-noticia.component';
 import { CardComentarioComponent } from './components/ApoioDuvidas/comentario/card-comentario/card-comentario.component';
+import { NovaNoticiaComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/nova-noticia/nova-noticia.component';
 
 
 registerLocaleData(localePT);
@@ -327,7 +328,8 @@ registerLocaleData(localeFR);
     ListagemBadgesComponent,
     DialogExclusaoBadgeComponent,
     ListagemTabelaBadgesComponent,
-    ListagemUltimasBadgesComponent
+    ListagemUltimasBadgesComponent,
+    NovaNoticiaComponent
   ],
   imports: [
     BrowserModule,

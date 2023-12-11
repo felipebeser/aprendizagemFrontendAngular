@@ -57,10 +57,21 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto[]>(apiUrl);
   }
 
+  ObterNoticiasByIdJava(id: number) : Observable<ChapterAssunto>
+  {
+    return this.https.get<ChapterAssunto>(`${this.javaUrl}/noticias/${id}`);
+  }
+
   ObterChapterAssuntoByIdJava (chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}`;
     return this.https.get<ChapterAssunto>(apiUrl);
+  }
+
+  ObterQuantidadeDeNoticias () : Observable<number>
+  {
+    const apiUrl = `${this.javaUrl}/quantidade-noticias`;
+    return this.https.get<number>(apiUrl);
   }
 
   ObterChapterAssuntoWithTotalComentariosByIdJava (chapterAssuntoId: number) : Observable<ChapterAssunto>

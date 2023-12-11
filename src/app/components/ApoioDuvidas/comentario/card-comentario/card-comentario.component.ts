@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { Curtida } from 'src/app/models/Curtida';
+import { Usuario } from 'src/app/models/Usuario';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
 import { ComentarioService } from 'src/app/services/comentario.service';
@@ -26,6 +27,9 @@ export class CardComentarioComponent implements OnInit {
   descriptions: string[] = [];
   chapterAssunto: ChapterAssunto;
   comentarioCurtido: boolean;
+  modalEdicao: boolean = false;
+  editarRespostaForm: FormGroup;
+  comentarioEditadoId: number;
 
 
 
@@ -45,6 +49,9 @@ export class CardComentarioComponent implements OnInit {
     this.respostaFilhoForm = this.fb.group({
       comentario: [null, [Validators.required, Validators.minLength(5)]],
       idComentario: [null],
+    });
+    this.editarRespostaForm = this.fb.group({
+      comentarioEditado: [null, [Validators.required, Validators.minLength(5)]],
     });
     this.chapterAssuntoService.ObterChapterAssuntoByIdJava(chapterAssuntoId).subscribe((data) => {
       this.chapterAssunto = data;
@@ -103,6 +110,11 @@ export class CardComentarioComponent implements OnInit {
     this.comentarioPaiIdSelecionado = comentario.id;
   }
 
+  showModalEditor(comentario: ChapterAssuntoComentario) {
+    this.modalEdicao = true;
+    this.comentarioEditadoId = comentario.id;
+  }
+
   responder() {
 
     var date;
@@ -137,8 +149,49 @@ export class CardComentarioComponent implements OnInit {
       });
   }
 
+  canEdit(usuario: Usuario): boolean {
+    return usuario.id == this.idUsuarioLogado || this.authGuardService.VerificarAdministrador() || this.authGuardService.VerificarProfessor();
+  }
+
+  editarResposta() {
+    let texto = "(Editado) " + this.editarRespostaForm.get('comentarioEditado')!.value;
+    console.log(texto);
+    console.log(this.comentarioEditadoId);
+    this.comentario.texto = texto;
+    console.log(this.comentario);
+
+    this.comentarioService.editarChapterAssuntoComentarioJava(this.comentarioEditadoId, texto)
+      .subscribe({
+        next: () => {
+          location.reload();
+        },
+      });
+  }
+
+  deletarResposta(comentario: ChapterAssuntoComentario) {
+  var confirmacao = window.confirm("Você realmente deseja excluir esse comentário?");
+
+  if (confirmacao) {
+    this.comentarioService.deletarChapterAssuntoComentario(comentario.id).subscribe({
+      next: () => {
+        location.reload();
+      },
+    });
+    alert("Exclusão realizada!");
+  } else {
+    alert("Exclusão cancelada.");
+  }
+
+  }
+
   limparFormularioFilho() {
     this.respostaFilhoForm.reset();
     this.descriptions = [];
   }
+
+  limparFormularioEdicao() {
+    this.editarRespostaForm.reset();
+    this.descriptions = [];
+  }
+
 }

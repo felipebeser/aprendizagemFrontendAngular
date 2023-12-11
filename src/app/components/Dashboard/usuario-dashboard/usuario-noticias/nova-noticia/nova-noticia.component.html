@@ -1,0 +1,28 @@
+<div class="container" id="voltar" >
+  <div>
+    <button type ="button"  class="btn btn-primary" (click)="limparFormulario()"routerLink="/noticias">Voltar</button>
+  </div>
+  <form class = "needs-validation" novalidate [formGroup]="form">
+
+    <div class="form-group">
+      <label for="titulo">Titulo</label>
+      <input class="form-control" formControlName="titulo" rows="3" formControlName="titulo" [ngClass]="{ 'is-invalid': submitted && hasError('titulo')}">
+    </div>
+
+    <div class="form-group">
+      <label for="imagem">Imagem</label>
+      <input type="file" (change)="onFileSelected($event)" formControlName="imagem" id="imagem">
+    </div>
+
+    <div class="form-group">
+      <label for="">Texto</label>
+      <p-editor formControlName="text" [style]="{ height: '320px' }"></p-editor>
+    </div>
+  </form>
+
+  <div id="perguntar" >
+    <button type="submit" id="botaoEnviar" class="btn btn-primary" (click)="onSubmit()" routerLink="/noticias" [disabled]="!verificarCampos()">Enviar</button>
+    <button type ="button"  class="btn btn-primary" (click)="limparFormulario()">Limpar Campos</button>
+  </div>
+</div>
+

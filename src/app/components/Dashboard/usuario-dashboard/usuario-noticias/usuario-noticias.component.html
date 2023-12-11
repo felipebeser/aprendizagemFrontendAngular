@@ -1,6 +1,9 @@
 <app-carousel></app-carousel>
-  <div class="container">
-    <app-card-noticias></app-card-noticias>
-  </div>
+<div class="container">
+  <button type="button" *ngIf="showButton()" class="btn btn-primary new-noticia" routerLink="/noticias/nova-noticia">
+    Publicar Nova Notícia
+   </button>
+  <app-card-noticias></app-card-noticias>
+</div>
 
 

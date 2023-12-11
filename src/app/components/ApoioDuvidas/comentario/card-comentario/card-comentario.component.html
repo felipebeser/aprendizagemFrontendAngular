@@ -33,17 +33,26 @@
               <button type="button" class="btn btn-primary action-cancel" (click)="limparFormularioFilho()">Limpar Campos</button>
             </div>
           </form>
-
         </p-dialog>
       </div>
-      <!-- <div class="second-buttons">
+      <div  class="second-buttons" *ngIf="canEdit(comentario.usuario)">
         <button type="button" class="btn btn-default second-btn" data-bs-toggle="modal"
-          data-bs-target="#exampleModal"> <i class="bi bi bi-pencil"></i></button>
-        <button type="button" class="btn btn-default second-btn"> <i class="bi bi-trash"></i></button>
+          data-bs-target="#exampleModal" (click)="showModalEditor(comentario)"> <i class="bi bi bi-pencil" ></i></button>
+          <p-dialog header="Editar comentário" [(visible)]="modalEdicao" [style]="{ width: '60vw' }" [draggable]="false">
+            <form [formGroup]="editarRespostaForm">
+              <p-editor formControlName="comentarioEditado" [style]="{ height: '320px' }"></p-editor>
+              <div class="action-buttons">
+                <button type="submit" class="btn btn-primary action-send" (click)="editarResposta()">Enviar</button>
+                <button type="button" class="btn btn-primary action-cancel" (click)="limparFormularioEdicao()">Limpar Campos</button>
+              </div>
+            </form>
+          </p-dialog>
+        <button type="button" class="btn btn-default second-btn" (click)="deletarResposta(comentario)"> <i class="bi bi-trash"></i></button>
+
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
